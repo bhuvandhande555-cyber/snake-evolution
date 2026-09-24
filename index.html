@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Snake Evolution - High Difficulty</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="page">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+        <div>
+            <h1>🐍 SNAKE EVOLUTION</h1>
+            <p>High Difficulty Data Structure Simulator</p>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+        </div>
+
+    </header>
+
+
+    <!-- DIFFICULTY -->
+    <div class="difficulty">
+
+        🔥 HIGH DIFFICULTY MODE
+
+        <span>
+            • 22 Obstacles • Slow Start • Progressive Speed
+        </span>
+
+    </div>
+
+
+    <!-- DASHBOARD -->
+    <section class="dashboard">
+
+        <div class="stat">
+            <small>SCORE</small>
+            <strong id="score">0</strong>
+        </div>
+
+        <div class="stat">
+            <small>HIGH SCORE</small>
+            <strong id="highScore">0</strong>
+        </div>
+
+        <div class="stat">
+            <small>SNAKE LENGTH</small>
+            <strong id="length">3</strong>
+        </div>
+
+        <div class="stat">
+            <small>SPEED</small>
+            <strong id="speed">130ms</strong>
+        </div>
+
+        <div class="stat">
+            <small>OBSTACLES</small>
+            <strong id="obstacles">22</strong>
+        </div>
+
+        <div class="stat">
+            <small>LEVEL</small>
+            <strong id="level">1</strong>
+        </div>
+
+    </section>
+
+
+    <!-- MAIN GAME -->
+    <main class="game-layout">
+
+
+        <!-- GAME AREA -->
+        <section class="game-section">
+
+            <div class="game-title">
+
+                <span>🌃 NIGHT CITY ARENA</span>
+
+                <span id="gameStatus">
+                    READY
+                </span>
+
+            </div>
+
+
+            <!-- GAME BOARD -->
+            <div id="board"></div>
+
+
+            <!-- KEYBOARD INFO -->
+            <div class="controls-info">
+
+                <span>
+                    ⌨️ WASD / ARROW KEYS
+                </span>
+
+                <span>
+                    SPACE = PAUSE
+                </span>
+
+            </div>
+
+
+            <!-- MOBILE CONTROLS -->
+            <div class="mobile-controls">
+
+                <button data-dir="up">
+                    ▲
+                </button>
+
+                <div>
+
+                    <button data-dir="left">
+                        ◀
+                    </button>
+
+                    <button data-dir="down">
+                        ▼
+                    </button>
+
+                    <button data-dir="right">
+                        ▶
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+
+            <button
+                id="startBtn"
+                class="main-btn">
+
+                ▶ START GAME
+
+            </button>
+
+
+            <button
+                id="pauseBtn"
+                class="secondary-btn">
+
+                ⏸ PAUSE
+
+            </button>
+
+
+            <button
+                id="restartBtn"
+                class="secondary-btn">
+
+                🔄 RESTART
+
+            </button>
+
+
+            <!-- DATA STRUCTURE -->
+            <div class="panel">
+
+                <h3>
+                    🧠 SNAKE ENGINE
+                </h3>
+
+
+                <div class="engine-row">
+
+                    <span>
+                        Head
+                    </span>
+
+                    <b>
+                        INSERT
+                    </b>
+
+                </div>
+
+
+                <div class="engine-row">
+
+                    <span>
+                        Body
+                    </span>
+
+                    <b>
+                        DEQUE
+                    </b>
+
+                </div>
+
+
+                <div class="engine-row">
+
+                    <span>
+                        Tail
+                    </span>
+
+                    <b>
+                        REMOVE
+                    </b>
+
+                </div>
+
+
+                <div class="engine-row">
+
+                    <span>
+                        Food
+                    </span>
+
+                    <b>
+                        + NODE
+                    </b>
+
+                </div>
+
+            </div>
+
+
+            <!-- LIVE DATA -->
+            <div class="panel">
+
+                <h3>
+                    📊 LIVE DATA
+                </h3>
+
+
+                <p>
+                    Food Eaten:
+                    <b id="foodCount">0</b>
+                </p>
+
+
+                <p>
+                    Collisions:
+                    <b id="collisionCount">0</b>
+                </p>
+
+
+                <p>
+                    Survival:
+                    <b id="survivalTime">0s</b>
+                </p>
+
+            </div>
+
+
+            <!-- ACTIVITY LOG -->
+            <div class="panel log-panel">
+
+                <h3>
+                    📡 ACTIVITY LOG
+                </h3>
+
+
+                <div id="log">
+
+                    <p>
+                        System initialized...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </main>
+
+
+    <!-- MISSION -->
+    <section class="mission">
+
+        <div>
+
+            <h2>
+                🎯 MISSION
+            </h2>
+
+            <p>
+                Control the snake, collect food,
+                avoid obstacles, increase your length
+                and survive as long as possible.
+            </p>
+
+        </div>
+
+
+        <div class="mission-target">
+
+            <span>
+                TARGET
+            </span>
+
+            <strong>
+                100+ SCORE
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        Snake Evolution Simulator •
+        Bhuvan Dhande • Roll No. 232 •
+        AI & DS • PCE Nagpur
+
+    </footer>
+
+</div>
+
+
+<!-- GAME OVER SCREEN -->
+<div
+    id="overlay"
+    class="overlay">
+
+    <div class="game-over">
+
+        <div class="game-over-icon">
+            💀
+        </div>
+
+
+        <h1 id="resultTitle">
+            GAME OVER
+        </h1>
+
+
+        <p id="resultText">
+            Your snake could not survive.
+        </p>
+
+
+        <div class="result-score">
+
+            SCORE
+
+            <strong id="finalScore">
+                0
+            </strong>
+
+        </div>
+
+
+        <button id="overlayRestart">
+
+            🔄 PLAY AGAIN
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
